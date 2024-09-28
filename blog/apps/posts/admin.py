@@ -5,7 +5,7 @@ from .models import Categorias, Posts, User
 
 class PostsAdmin(admin.ModelAdmin):
     search_fields = ("titulo",)
-    list_filter = ["categoria", "autor__username"]# accede a fk, desde la tabla autor a la otra tabla
+    list_filter = ["categoria__nombre", "autor__username"]# accede a fk, desde la tabla autor a la otra tabla
     list_display = ['titulo', 'autor', 'categoria']
     date_hierarchy = 'fecha_publicacion' 
 

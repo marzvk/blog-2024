@@ -3,3 +3,4 @@ entorno
 blog/blog/db.sqlite3
 blog/media
 migrations
+__pycache__/
