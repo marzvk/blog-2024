@@ -41,7 +41,7 @@ class Posts(models.Model):
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to='media/posts', null=True, blank=True)
+    imagen = models.ImageField(upload_to='posts/', null=True, blank=True)
 
     class Meta:
         db_table = "Posts"
