@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import Posts
+from .form import RegistroForm
+from django.views.generic import CreateView
 
 # Create your views here.
 
@@ -13,5 +15,8 @@ def posts(request):
 def about_us(request):
     return render(request, "Posts/about_us.html")
 
-def registro(request):
-    return render(request, "usuarios/registro.html")
+# vista basada en clase
+
+class Registro(CreateView):
+    form_class = RegistroForm
+    template_name = "usuarios/registro.html"
