@@ -3,5 +3,10 @@
 {% block contenido %}
 
 <h1> Inicio de sesion</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+</form>
 
 {% endblock %}

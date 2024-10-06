@@ -28,6 +28,23 @@
                     <a class="nav-link {% if request.path == 'registro/' %}active{% endif %}"
                         href="{% url 'registro' %}">Registro</a>
                 </li>
+                <li class="nav-item">
+
+                  {% if user.is_authenticated %}
+
+                      <h3>{{ user.username }}</h3>
+                      <form action="{% url 'logout' %}" method="post">
+                        {%csrf_token%}
+                        {{form}}
+                        <button type="sumit">salir</button>
+                      </form>
+      
+                  {%else%}
+                      <a class="nav-link {% if request.path == '' %}active{% endif %}" href="{% url 'login' %}">
+                      Iniciar Sesion</a>
+
+                  {% endif %}
+              </li>
             </ul>
 
 

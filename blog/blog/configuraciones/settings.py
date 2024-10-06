@@ -1,9 +1,14 @@
 
 import os
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+LOGOUT_REDIRECT_URL = reverse_lazy("noticias")
+LOGIN_REDIRECT_URL = reverse_lazy("noticias")
+LOGIN_URL = reverse_lazy("login")
 
 # Application definition
 
