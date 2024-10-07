@@ -12,6 +12,7 @@
             <div class = "card-body">
                 <h2 class="card-title">{{ noticia.titulo }}</h2>
                 <p class="card-text">{{ noticia.contenido | truncatechars:30 }}</p> 
+                <a href="{% url 'detalle' noticia.id %}">ver más...</a>
                 <!-- truncatechars, para mostrar solo la cantidad indicada de caracteres -->
                 <p>{{ noticia.fecha_publicacion }}</p>
 

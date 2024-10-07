@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .models import Posts
-from .form import RegistroForm
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
+from .models import Posts
+from .form import RegistroForm
+
 
 # Create your views here.
 
@@ -28,4 +29,4 @@ def post_id(request, id):
     contexto = {}
     noticia = Posts.objects.get(id=id)
     contexto["noticia"] = noticia
-    return render(request, "posts/detalle.html", contexto)    
+    return render(request, "Posts/detalle.html", contexto)
