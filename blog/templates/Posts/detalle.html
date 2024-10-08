@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<h1>{{ noticia.titulo }}</h1>
+<div class="row">
+    <div class="col-md-8">
+        
+            <img src="{{ noticia.imagen.url }}" width="60%">
+       
+    </div>
+    <div class="col-md-4">
+        <hr>
+        <h4>Noticia:</h4>
+        <p>
+            {{ noticia.contenido }}
+        </p>
+        <hr>
+        <h5>
+            Fecha de Publicacion
+        </h5>
+        <p> {{ noticia.fecha_publicacion }} </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

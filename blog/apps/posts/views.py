@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 from .models import Posts
 from .form import RegistroForm
-from django.views.generic import CreateView
+
 
 # Create your views here.
 
@@ -19,4 +21,12 @@ def about_us(request):
 
 class Registro(CreateView):
     form_class = RegistroForm
+    success_url = reverse_lazy("noticias")
     template_name = "usuarios/registro.html"
+
+
+def post_id(request, id):
+    contexto = {}
+    noticia = Posts.objects.get(id=id)
+    contexto["noticia"] = noticia
+    return render(request, "Posts/detalle.html", contexto)

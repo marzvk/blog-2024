@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView, LogoutView
 from .configuraciones import settings
 from .views import index
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +28,8 @@ urlpatterns = [
     # las url de la app posts
     path("posts/", include("apps.posts.url")),
     # aqui para incluir otras apps
+     path(
+        "login/", LoginView.as_view(template_name="usuarios/login.html"), name="login"
+    ),
+    path("logout/", LogoutView.as_view(), name="logout"),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) # lectura de imagenes y ruta
-
-
-
