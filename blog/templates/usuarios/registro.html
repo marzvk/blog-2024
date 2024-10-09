@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 
 {% block contenido %}
+<center>
 
-<h1> Registro de usuarios</h1>
-    <form method="post">
+    <form method="post" style="margin-top: 180px; margin-bottom: 150px;">
+        <h1 class="h1"> Registro de Usuarios</h1>
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit"> Enviar</button>
+        <div class="container">
+            <table>{{ form.as_p }}</table>
+        </div>
+
+        <button type="submit" class="btn btn-primary"> Enviar</button>
     </form>
 
+</center>
 
 {% endblock %}
