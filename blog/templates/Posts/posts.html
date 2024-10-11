@@ -4,15 +4,15 @@
 
 <h1>Noticias</h1>
 <div class= "container">
-<div class="row">
+<div class="row gx-5 gy-3">
     {% for noticia in noticias %}
     <div class="col-md-5">
         <div class="card mb-2">
             <img src="{{ noticia.imagen.url }}" alt="">
             <div class = "card-body">
                 <h2 class="card-title">{{ noticia.titulo }}</h2>
-                <p class="card-text">{{ noticia.contenido | truncatechars:30 }}</p> 
-                <a href="{% url 'detalle' noticia.id %}">ver más...</a>
+                <p class="card-text">{{ noticia.contenido | truncatechars:40 }}</p> 
+                <a href="{% url 'detalle' noticia.id %}" class="btn btn-outline-info">ver más...</a>
                 <!-- truncatechars, para mostrar solo la cantidad indicada de caracteres -->
                 <p>{{ noticia.fecha_publicacion }}</p>
 

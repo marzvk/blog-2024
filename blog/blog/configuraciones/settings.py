@@ -105,4 +105,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'media')
 
 # Usuario modificado
 
-AUTH_USER_MODEL = 'posts.User'                         
+AUTH_USER_MODEL = 'posts.User' 
+
+SITE_NAME = 'BLOG 2024'
+                        

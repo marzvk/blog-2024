@@ -19,35 +19,42 @@
 <body>
   <div>
     <ul class="navbar-nav">
+
       <li class="nav-item">
         <a class="nav-link {% if request.path == '' %}active{% endif %}" href="{% url 'noticias' %}">Noticias</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link {% if request.path == 'about/' %}active{% endif %}" href="{% url 'about' %}">About</a>
       </li>
 
-      <li class="nav-item">
 
-        {% if user.is_authenticated %}
 
-        <h3>{{ user.username }}</h3>
-        <form action="{% url 'logout' %}" method="post">
-          {%csrf_token%}
-          {{form}}
-          <button type="sumit">Cerrar Sesion</button>
-        </form>
+      {% if user.is_authenticated %}
 
-        {%else%}
+      
+        <li> <a href="{% url 'perfil' user.id %}">{{user.username}} </a></li>
+      
+
+      <form action="{% url 'logout' %}" method="post">
+        {%csrf_token%}
+        {{form}}
+        <button type="sumit" class="btn btn-warning">Cerrar Sesion</button>
+      </form>
+
+      {% else %}
+
       <li class="nav-item">
         <a class="nav-link {% if request.path == 'registro/' %}active{% endif %}"
           href="{% url 'registro' %}">Registro</a>
       </li>
+
       <li> <a class="nav-link {% if request.path == '' %}active{% endif %}" href="{% url 'login' %}">
           Iniciar Sesion</a>
       </li>
 
       {% endif %}
-      </li>
+
     </ul>
 
 

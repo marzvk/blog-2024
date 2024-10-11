@@ -11,7 +11,7 @@ class User(AbstractUser):
                               null=True,
                               blank=True)
     descripcion = models.TextField(max_length=250)
-
+    
     def __str__(self):
         return self.username  # username hereda de la clase a la que llama
 

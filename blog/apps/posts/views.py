@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from .models import Posts
+from .models import Posts, User
 from .form import RegistroForm
 
 
@@ -16,6 +16,13 @@ def posts(request):
 
 def about_us(request):
     return render(request, "Posts/about_us.html")
+
+def perfil(request, id):
+    context = {}
+    usuarios = User.objects.get(id=id)
+    context['usuarios']= usuarios
+    print(usuarios)
+    return render(request, "usuarios/perfil.html", context)
 
 # vista basada en clase
 
