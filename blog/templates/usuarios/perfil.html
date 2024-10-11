@@ -7,11 +7,12 @@
 
 
     <h1>El usuario con nombre: <strong>{{usuarios.username}}</strong>, tiene el id asignado:
-        <strong>{{usuarios.id}}</strong> </h1>
+        <strong>{{usuarios.id}}</strong>
+    </h1>
 
-     
-
-
+    {% if usuarios.icono %}
+    <img src="{{user.icono.url }}" alt="asd" class="img-perfil">
+    {% endif %}
 </div>
 
 {% endblock %}

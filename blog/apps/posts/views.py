@@ -21,7 +21,7 @@ def perfil(request, id):
     context = {}
     usuarios = User.objects.get(id=id)
     context['usuarios']= usuarios
-    print(usuarios)
+    # print(usuarios)
     return render(request, "usuarios/perfil.html", context)
 
 # vista basada en clase
