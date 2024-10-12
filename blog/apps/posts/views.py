@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from .models import Posts, User
-from .form import RegistroForm
+from .form import RegistroForm, CrearForm
 
 
 # Create your views here.
@@ -37,3 +37,17 @@ def post_id(request, id):
     noticia = Posts.objects.get(id=id)
     contexto["noticia"] = noticia
     return render(request, "Posts/detalle.html", contexto)
+
+
+class CrearPost(CreateView):
+    form_class = CrearForm
+    model = Posts
+    template_name = "Posts/crear_post.html"
+    success_url = reverse_lazy("noticias")
+
+
+
+class EliminarPost(DeleteView):
+    model = Posts
+    success_url = reverse_lazy("noticias")
+    template_name = "Posts/posts_confirm_delete.html"
