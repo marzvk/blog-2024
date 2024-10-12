@@ -46,8 +46,14 @@ class CrearPost(CreateView):
     success_url = reverse_lazy("noticias")
 
 
+    def form_valid(self, form):
+        form.instance.autor = self.request.user
+        return super().form_valid(form)
+
+
 
 class EliminarPost(DeleteView):
     model = Posts
     success_url = reverse_lazy("noticias")
     template_name = "Posts/posts_confirm_delete.html"
+
