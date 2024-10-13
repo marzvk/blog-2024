@@ -3,13 +3,13 @@
 
 {% block contenido%}
 
-
-desea eliminar {{object}}
-<form action="" method="post">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit">Eliminar</button>
-</form>
-
+<div style="margin-top: 150px; margin-left: 90px; margin-bottom: 90px;">
+    <h2><strong>Desea eliminar: >>> <u>{{object}}</u> ???</strong></h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+</div>
 
 {% endblock contenido%}

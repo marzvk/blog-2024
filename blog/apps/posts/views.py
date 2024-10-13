@@ -10,7 +10,7 @@ from .form import RegistroForm, CrearForm, ModificarForm
 # vistas basadas en funciones
 def posts(request):
     context = {}
-    noticias = Posts.objects.all() # seleccionamos todos los objetos de posts
+    noticias = Posts.objects.all().order_by("-id") # seleccionamos todos los objetos de posts
     context['noticias'] = noticias
     return render(request, "Posts/posts.html", context)
 
