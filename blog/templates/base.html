@@ -20,8 +20,7 @@
   <div>
     <ul class="navbar-nav">
 
-      <li><a href="{% url 'noticias' %}"><img src="{% static 'img/favicon-1.png' %}"
-        alt="" ></a>
+      <li><a href="{% url 'noticias' %}"><img src="{% static 'img/favicon-1.png' %}" alt=""></a>
       </li>
 
       <li class="nav-item">
@@ -36,17 +35,17 @@
 
       {% if user.is_authenticated %}
 
-      
-        <li> <a href="{% url 'perfil' user.id %}"><button><strong>{{user.username}}</strong></button>
+
+      <li> <a href="{% url 'perfil' user.id %}"><button><strong>{{user.username}}</strong></button>
         </a></li>
-      
+
 
       <form action="{% url 'logout' %}" method="post">
         {%csrf_token%}
         <!-- {{form}} -->
         <button type="sumit" class="btn btn-warning">Cerrar Sesion</button>
       </form>
-     
+
       {% else %}
 
       <li class="nav-item">

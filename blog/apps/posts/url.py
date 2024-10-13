@@ -13,4 +13,6 @@ urlpatterns = [
     path("nuevo_post/", views.CrearPost.as_view(), name="nuevo_post"),
     # eliminar
     path("eliminar/<int:pk>", views.EliminarPost.as_view(), name="eliminar_post"),
+    # modificar
+    path("modificar/<int:pk>", views.ModificarPost.as_view(), name="modificar_post"),
 ]

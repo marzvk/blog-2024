@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from .models import Posts, User
-from .form import RegistroForm, CrearForm
+from .form import RegistroForm, CrearForm, ModificarForm
 
 
 # Create your views here.
@@ -57,3 +57,10 @@ class EliminarPost(DeleteView):
     success_url = reverse_lazy("noticias")
     template_name = "Posts/posts_confirm_delete.html"
 
+
+
+class ModificarPost(UpdateView):
+    model = Posts
+    form_class = ModificarForm
+    template_name = "Posts/modificar_post.html"
+    success_url = reverse_lazy("noticias")

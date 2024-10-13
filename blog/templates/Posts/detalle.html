@@ -6,12 +6,13 @@
 <div class="row">
     <div class="col-md-7">
         {% if noticia.imagen %}
-            <img src="{{ noticia.imagen.url }}" class="rounded float-end" width="60%">
+        <img src="{{ noticia.imagen.url }}" class="rounded float-end" width="60%">
         {% else %}
-            <p>sin imagen</p>
-        {% endif %}       
+        <h3 style="margin-left: 250px; margin-top: 100px;">Sin imagen. Imaginemos algo positivo....</h3>
+        {% endif %}
     </div>
     <div class="col-md-4">
+        <a href="{% url 'modificar_post' noticia.pk %}" class="btn btn-outline-danger">Modificar</a>
         <hr>
         <h2><strong><u>Noticia:</u></strong></h2>
         <p>
@@ -19,9 +20,15 @@
         </p>
         <hr>
         <h5>
-            <strong>Fecha de Publicacion</strong>
+            <strong>Fecha de Publicacion:</strong>
         </h5>
         <p> {{ noticia.fecha_publicacion }} </p>
+        <hr>
+        <h5><strong>Categoria:</strong></h5>
+        <p>{{noticia.categoria}}</p>
+        <hr>
+        <h5><strong>Autor:</strong></h5>
+        <p>{{noticia.autor}}</p>
 
     </div>
 

@@ -26,3 +26,11 @@ class CrearForm(forms.ModelForm):
         model = Posts
         fields = "__all__"
         exclude = ["autor"]
+
+
+
+class ModificarForm(forms.ModelForm):
+
+    class Meta:
+        model = Posts
+        fields = ("contenido",)
