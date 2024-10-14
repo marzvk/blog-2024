@@ -20,10 +20,35 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Noticias</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Acerca de nosotros</a></li>
+                        {% if user.is_authenticated %}
+
+      
+                        <li class="nav-item"> <a class="nav-link" href="{% url 'perfil' user.id %}">{{user.username}}</a></li>
+
+                        <form action="{% url 'logout' %}" method="post">
+                            {%csrf_token%}
+                            <!-- {{form}} -->
+                            <button type="sumit" class="btn btn-warning">Cerrar Sesion</button>
+                          </form>
+                        
+
+                        <!-- {{form}} -->
+                         
+                      {% else %}
+                
+                      <li class="nav-item">
+                        <a class="nav-link {% if request.path == 'registro/' %}active{% endif %}"
+                          href="{% url 'registro' %}">Registro</a>
+                      </li>
+                
+                      <li> <a class="nav-link {% if request.path == '' %}active{% endif %}" href="{% url 'login' %}">
+                          Iniciar Sesion</a>
+                      </li>
+                
+                      {% endif %}
+                
                     </ul>
                 </div>
             </div>
