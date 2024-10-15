@@ -12,9 +12,13 @@
         {% endif %}
     </div>
     <div class="col-md-4">
+
         {% if user.id == noticia.autor_id %}
+
         <a href="{% url 'modificar_post' noticia.pk %}" class="btn btn-outline-danger">Modificar</a>
+
         {%endif%}
+
         <hr>
         <h2><strong><u>Noticia:</u></strong></h2>
         <p>
