@@ -2,11 +2,27 @@
 
 
 {%block contenido%}
+<div class="col-lg-8">
 
-<form action="" method="post" enctype="multipart/form-data">
-     {%csrf_token%}
-    {{form.as_p}}
-    <button type="submit">enviar</button>
-</form>
+    <!-- Featured blog post-->
+    <div class="card-header">
+
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            Nuevo Post
+        </div>
+        <div class="card-body">
+        <form action="" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-primary">enviar</button>
+        </form>
+
+        </div>
+    </div>
+
+</div>
+
 
 {%endblock contenido%}
