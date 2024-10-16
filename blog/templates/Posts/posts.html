@@ -10,12 +10,26 @@
             Post</button></a>
     <hr>
     {% endif %}
+
+    <div> <a href="?ordenar=fecha"><button class="btn btn-info">Ordenar por fecha</button></a>
+        <a href="?ordenar=alfabetico"><button class="btn btn-info">Ordenar alfabeticamente</button></a>
+    </div>
+    <div>
+        <a href="{% url 'noticias' %}" class="btn btn-success">Todas</a>
+        {% for categoria in categorias %}
+
+        <a href="?categoria={{categoria.nombre}}" class="btn btn-light"> {{categoria.nombre}}</a>
+
+        {% endfor %}
+    </div>
+    <hr>
+    
 </section>
 
 
 <div class="container">
     <div class="row gx-5 gy-3">
-        {% for noticia in noticias %}
+        {% for noticia in object_list %}
         <div class="col-md-5">
             <div class="card mb-2">
 
@@ -34,6 +48,7 @@
                     <a href="{% url 'detalle' noticia.id %}" class="btn btn-outline-info">ver más...</a>
                     <!-- truncatechars, para mostrar solo la cantidad indicada de caracteres -->
                     <p>{{ noticia.fecha_publicacion }}</p>
+                    <a href="?autor={{noticia.autor}}" class="btn btn-success"><small>autor: {{noticia.autor}}</small></a>
 
                     {% if user.id == noticia.autor_id %}
                     <a href="{% url 'eliminar_post' noticia.pk %}"><button type="submit"

@@ -71,3 +71,21 @@ class ModificarComentarioForm(forms.ModelForm):
         fields = [
             "contenido",
         ]
+
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Nombre de usuario"},
+        ),
+    )
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "Ingrese la contraseña"}
+        ),
+        required=True,
+    )
+
+    class Meta:
+        model = User
+        fileds = ["username", "password"]
