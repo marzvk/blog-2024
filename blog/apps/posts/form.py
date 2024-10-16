@@ -4,11 +4,30 @@ from .models import User, Posts
 
 
 class RegistroForm(UserCreationForm):
-    username = forms.CharField(max_length=200)
-    email = forms.EmailField(max_length=200, help_text="Required")
-    password1 = forms.CharField(widget=forms.PasswordInput, required=True)
-    password2 = forms.CharField(widget=forms.PasswordInput, required=True)
-    icono = forms.ImageField(label="imagen de perfil", required=False)
+    username = forms.CharField(
+        max_length=200,
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Nombre de usuario"},
+        ),
+    )
+    email = forms.EmailField(
+        max_length=200,
+        help_text="Required",
+        widget=forms.EmailInput(
+            attrs={"class": "form-control", "placeholder": "name@example.com"}
+        ),
+    )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={"class": "form-control"}), required=True
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={"class": "form-control"}), required=True
+    )
+    icono = forms.ImageField(
+        label="Imagen de perfil",
+        required=False,
+        widget=forms.FileInput(attrs={"class": "form-control form-control-lg"}),
+    )
 
     class Meta:
         model = User
