@@ -36,6 +36,34 @@
         <h5><strong>Autor:</strong></h5>
         <p>{{noticia.autor}}</p>
 
+        <hr>
+
+        <h2>Escribe un comentario</h2>
+        <div>
+            <form action="{% url 'comentar' %}" method="post">
+                {% csrf_token %}
+                <textarea name="comentario">
+                </textarea>
+                <input type="text" name="id_noticia" value="{{ noticia.pk }}" hidden="">
+                <button type="submit" class="btn btn-secondary">Comentar </button>
+            </form>
+        </div>
+        <hr>
+        <div>
+            <h2>Comentarios</h2>
+            {% for comentario in comentarios %}
+            <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">{{comentario.fecha_publicacion}}</div>
+                <div class="card-body">
+                    <h5 class="card-title"> {{comentario.autor}}</h5>
+                    <p class="card-text">{{comentario.contenido}}</p>
+                </div>
+                <a class="btn btn-danger" href="{% url 'borrar_comentario' comentario.pk %}">Eliminar</a>
+                <a class="btn btn-warning" href="{% url 'modificar_comentario' comentario.pk %}">Modificar</a>
+            </div>
+
+            {% endfor %}
+        </div>
     </div>
 
 </div>

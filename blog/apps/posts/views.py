@@ -1,8 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
-from .models import Posts, User
-from .form import RegistroForm, CrearForm, ModificarForm
+from django.contrib.auth.decorators import login_required
+from .models import Posts, User, Comentarios
+from .form import (
+    RegistroForm,
+    CrearForm,
+    ModificarForm,
+    ModificarComentarioForm,
+    )
+
 
 
 # Create your views here.
@@ -24,19 +31,21 @@ def perfil(request, id):
     # print(usuarios)
     return render(request, "usuarios/perfil.html", context)
 
+def post_id(request, id):
+    contexto = {}
+    noticia = Posts.objects.get(id=id)
+    comentarios = Comentarios.objects.filter(post=noticia)
+    contexto["noticia"] = noticia
+    contexto["comentarios"] = comentarios
+    return render(request, "Posts/detalle.html", contexto)
+
+
 # vista basada en clase
 
 class Registro(CreateView):
     form_class = RegistroForm
     success_url = reverse_lazy("noticias")
     template_name = "usuarios/registro.html"
-
-
-def post_id(request, id):
-    contexto = {}
-    noticia = Posts.objects.get(id=id)
-    contexto["noticia"] = noticia
-    return render(request, "Posts/detalle.html", contexto)
 
 
 class CrearPost(CreateView):
@@ -63,4 +72,28 @@ class ModificarPost(UpdateView):
     model = Posts
     form_class = ModificarForm
     template_name = "Posts/modificar_post.html"
+    success_url = reverse_lazy("noticias")
+
+
+@login_required
+def comentar_post(request):
+    comentario = request.POST.get("comentario", None)
+    user = request.user
+    post = request.POST.get("id_noticia", None)
+    get_post = Posts.objects.get(pk=post)
+    coment = Comentarios.objects.create(autor=user, contenido=comentario, post=get_post)
+
+    return redirect(reverse_lazy("detalle", kwargs={"id": post}))
+
+
+class ModificarComentario(UpdateView):
+    model = Comentarios
+    form_class = ModificarComentarioForm
+    template_name = "comentarios/modificar.html"
+    success_url = reverse_lazy("noticias")
+
+
+class EliminarComentario(DeleteView):
+    model = Comentarios
+    template_name = "comentarios/confirm_delete.html"
     success_url = reverse_lazy("noticias")
