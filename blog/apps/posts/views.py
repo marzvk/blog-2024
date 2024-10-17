@@ -24,9 +24,10 @@ from django.contrib.auth.views import LoginView
 #     return render(request, "Posts/posts.html", context)
 
 class Noticias(ListView):
+    paginate_by = 2
     model = Posts
     template_name = "Posts/posts.html"
-    # paginate_by = 2
+    
 
     def get_queryset(self):
         queryset = super().get_queryset()

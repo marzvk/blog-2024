@@ -2,35 +2,48 @@
 
 {% block contenido %}
 
-<h1 class="display-1" style="margin-left: 30px; margin-top: 30px;">Noticias</h1>
+<h1 class="display-1" style="margin-left: 30px;">Noticias</h1>
 
-<section>
+<!-- Navegador y filtros  -->
+<ul class="nav nav-pills nav-fill">
     {% if user.is_authenticated %}
-    <a href="{% url 'nuevo_post' %}"><button class="btn btn-success" style="margin-left: 25px; margin-top: 40px;">Nuevo
-            Post</button></a>
-    <hr>
+    <li class="nav-item">
+        <a href="{% url 'nuevo_post' %}"><button class="btn btn-success">Nuevo
+                Post</button></a>
+    </li>
+
     {% endif %}
 
-    <div> <a href="?ordenar=fecha"><button class="btn btn-info">Ordenar por fecha</button></a>
-        <a href="?ordenar=alfabetico"><button class="btn btn-info">Ordenar alfabeticamente</button></a>
-    </div>
-    <div>
-        <a href="{% url 'noticias' %}" class="btn btn-success">Todas</a>
-        {% for categoria in categorias %}
+    <li class="nav-item"><a href="?ordenar=fecha"><button class="btn btn-info">Ordenar por fecha</button></a></li>
+    <li class="nav-item"> <a href="?ordenar=alfabetico"><button class="btn btn-info">Ordenar
+                alfabeticamente</button></a></li>
 
-        <a href="?categoria={{categoria.nombre}}" class="btn btn-light"> {{categoria.nombre}}</a>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false"><button class="btn btn-success">Categorias</button></a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'noticias' %}"><button
+                        class="btn btn-outline-secondary">Todas</button></a>
+            </li>
+            {% for categoria in categorias %}
+            <li><a class="dropdown-item" href="?categoria={{categoria.nombre}}"><button
+                        class="btn btn-outline-secondary">{{categoria.nombre}}</button>
+                </a></li>
 
-        {% endfor %}
-    </div>
+            <!-- <a href="?categoria={{categoria.nombre}}" class="btn btn-light"> {{categoria.nombre}}</a> -->
+
+            {% endfor %}
+        </ul>
+    </li>
     <hr>
-    
-</section>
 
+</ul>
+<!-- Inicio muestra de noticias -->
 
 <div class="container">
     <div class="row gx-5 gy-3">
-        {% for noticia in object_list %}
-        <div class="col-md-5">
+        {% for noticia in page_obj %}
+        <div class="col-md-6">
             <div class="card mb-2">
 
                 {% if noticia.imagen %}
@@ -48,7 +61,8 @@
                     <a href="{% url 'detalle' noticia.id %}" class="btn btn-outline-info">ver más...</a>
                     <!-- truncatechars, para mostrar solo la cantidad indicada de caracteres -->
                     <p>{{ noticia.fecha_publicacion }}</p>
-                    <a href="?autor={{noticia.autor}}" class="btn btn-success"><small>autor: {{noticia.autor}}</small></a>
+                    <a href="?autor={{noticia.autor}}" class="btn btn-success"><small>autor:
+                            {{noticia.autor}}</small></a>
 
                     {% if user.id == noticia.autor_id %}
                     <a href="{% url 'eliminar_post' noticia.pk %}"><button type="submit"
@@ -60,6 +74,27 @@
         </div>
 
         {% endfor %}
+
+        <!-- Paginado -->
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Primera</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previa</a>
+                {% endif %}
+
+                <span class="current">
+                    Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">siguiente</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Ultima &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
     </div>
 </div>
 

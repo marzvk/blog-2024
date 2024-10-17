@@ -40,7 +40,6 @@
     text-decoration: underline;
 } */
 
-.custom-color {
-    background-color: #ff5733;
-    color: white;
+body{
+    background-color: aqua;
 }
