@@ -1,6 +1,6 @@
-body {
-    background-color: black;
-    color: white;
+/* body {
+    background-color: rgb(138, 209, 206);
+    color: rgb(189, 132, 132);
     margin: 0; padding: 0
 }
 
@@ -11,7 +11,7 @@ body {
     height: 60px;
     display: flex;
     justify-content: space-around;
-    background-color: #150c47;
+    background-color: #7167aa;
     font-family: "Roboto", sans-serif;
 }
 
@@ -38,4 +38,9 @@ body {
 .active {
     color: #c4c4c4;
     text-decoration: underline;
+} */
+
+.custom-color {
+    background-color: #ff5733;
+    color: white;
 }

@@ -58,8 +58,10 @@
                     <h5 class="card-title"> {{comentario.autor}}</h5>
                     <p class="card-text">{{comentario.contenido}}</p>
                 </div>
+                {% if user.id == comentario.autor_id  %}
                 <a class="btn btn-danger" href="{% url 'borrar_comentario' comentario.pk %}">Eliminar</a>
                 <a class="btn btn-warning" href="{% url 'modificar_comentario' comentario.pk %}">Modificar</a>
+                {% endif %}
             </div>
 
             {% endfor %}
