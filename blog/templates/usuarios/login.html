@@ -2,9 +2,9 @@
 
 {% block contenido %}
 <center>
-    <h1 class="h1" style="margin-top: 150px;"> Inicio de Sesion</h1>
+    <h1 class="h1" style="padding-top: 190px;"> Inicio de Sesion</h1>
     <div class="container">
-    <form action="" method="post" style="margin-bottom: 100px;">
+    <form action="" method="post" style="padding-bottom: 170px;">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Enviar</button>

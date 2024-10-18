@@ -2,11 +2,11 @@
 
 
 {%block contenido%}
-
-<form action="" method="post" enctype="multipart/form-data">
-     {%csrf_token%}
-    {{form.as_p}}
-    <button type="submit">enviar</button>
-</form>
-
+<center>
+    <form action="" method="post" enctype="multipart/form-data" style="padding: 160px;">
+        {%csrf_token%}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-dark">enviar</button>
+    </form>
+</center>
 {%endblock contenido%}
