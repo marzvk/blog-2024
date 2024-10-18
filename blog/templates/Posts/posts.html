@@ -30,8 +30,7 @@
                         class="btn btn-outline-secondary">{{categoria.nombre}}</button>
                 </a></li>
 
-            <!-- <a href="?categoria={{categoria.nombre}}" class="btn btn-light"> {{categoria.nombre}}</a> -->
-
+            
             {% endfor %}
         </ul>
     </li>
@@ -44,7 +43,7 @@
     <div class="row gx-5 gy-3">
         {% for noticia in page_obj %}
         <div class="col-md-6">
-            <div class="card mb-2">
+            <div class="card bg-dark text-white mb-2">
 
                 {% if noticia.imagen %}
 
@@ -52,7 +51,10 @@
 
                 {% else %}
 
-                <p>Sin imagen. Usa tu imaginacion</p>
+                <h4>Sin imagen</h4>
+                <h4>Usa tu imaginacion</h4>
+                <br>
+                <br>
 
                 {% endif %}
                 <div class="card-body">
@@ -77,23 +79,24 @@
 
         <!-- Paginado -->
 
-        <div class="pagination">
+        <div class="pagination justify-content-center">
             <span class="step-links">
                 {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; Primera</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previa</a>
+                <a class="btn btn-dark" href="?page=1">&laquo; Primera</a>
+                <a class="btn btn-dark" href="?page={{ page_obj.previous_page_number }}">previa</a>
                 {% endif %}
 
-                <span class="current">
-                    Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                <span class="btn btn-dark">
+                    Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
                 </span>
 
                 {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">siguiente</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Ultima &raquo;</a>
+                <a class="btn btn-dark" href="?page={{ page_obj.next_page_number }}">siguiente</a>
+                <a class="btn btn-dark" href="?page={{ page_obj.paginator.num_pages }}">Ultima &raquo;</a>
                 {% endif %}
             </span>
         </div>
+
 
     </div>
 </div>

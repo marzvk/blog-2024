@@ -15,7 +15,7 @@
 
         {% if user.id == noticia.autor_id %}
 
-        <a href="{% url 'modificar_post' noticia.pk %}" class="btn btn-outline-danger">Modificar</a>
+        <a href="{% url 'modificar_post' noticia.pk %}" class="btn btn-danger">Modificar contenido</a>
 
         {%endif%}
 
@@ -52,7 +52,7 @@
         <div>
             <h2>Comentarios</h2>
             {% for comentario in comentarios %}
-            <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+            <div class="card bg-secondary text-white mb-3" style="max-width: 18rem;">
                 <div class="card-header">{{comentario.fecha_publicacion}}</div>
                 <div class="card-body">
                     <h5 class="card-title"> {{comentario.autor}}</h5>
