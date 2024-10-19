@@ -14,7 +14,7 @@ Mariano Edgardo Zovak (https://github.com/marzvk)
 -[Django] (Backend)  
 -[SQLite] (Base de datos)  
 -[HTML/CSS/Bootstrap 5] (Frontend)  
--[Python Anyway] (Plataforma de despliege)
+-[Python Anywhere] (Plataforma de despliege)
 
 ## Funcionalidades
 -Registro de usuarios  
