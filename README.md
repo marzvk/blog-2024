@@ -13,7 +13,7 @@ Mariano Edgardo Zovak (https://github.com/marzvk)
 -[Visual Studio Code] (Editor de texto/codigo)  
 -[Django] (Backend)  
 -[SQLite] (Base de datos)  
--[HTML/CSS/Bootstrap 5] (Frontend)
+-[HTML/CSS/Bootstrap 5] (Frontend)  
 -[Python Anyway] (Plataforma de despliege)
 
 ## Funcionalidades
