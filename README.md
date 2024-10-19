@@ -3,7 +3,7 @@
 
 ## Integrantes 
 Gustavo Hernan Juarez  
-Adrián Fabricio A. Herrera  
+Adrián Fabricio A. Herrera (https://github.com/SoyFabricioHerrera)  
 Blas Quinteros Aguirre (https://github.com/BlasQA)  
 Rubén Martín Leiva Ruiz Diaz (https://github.com/rubenlrd)  
 Mariano Edgardo Zovak (https://github.com/marzvk)
