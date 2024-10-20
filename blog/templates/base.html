@@ -9,10 +9,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
   <!-- <link rel="stylesheet" href={% static "css/global.css" %}> -->
 
-    <!-- Este es el link para las fuentes de las redes sociales-->
+  <!-- Este es el link para las fuentes de las redes sociales-->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <!--/fuente redes-->
 
@@ -24,87 +29,89 @@
 </head>
 
 <body>
-  <nav style="background:radial-gradient(circle,rgba(238,174,202,1)79%,rgba(148,187,233,1)100%);height:150px;">
-    <ul class="nav nav-fill">
+  
+    <nav style="background:radial-gradient(circle,rgba(238,174,202,1)79%,rgba(148,187,233,1)100%);height:65px;">
+      <ul class="nav nav-fill">
 
-      <li class="nav-item"><a href="{% url 'index' %}"><img src="{% static 'img/logo3.png' %}" alt=""></a>
-      </li>
+        <li class="nav-item"><a href="{% url 'index' %}"><img src="{% static 'img/logo3.png' %}" alt=""></a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link active" href="{% url 'noticias' %}"><button class="btn btn-none">
-            <h3>Noticias</h3>
-          </button></a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'noticias' %}"><button class="btn btn-none">
+              <h3>Noticias</h3>
+            </button></a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'about' %}"><button class="btn btn-none">
-            <h3>About</h3>
-          </button></a>
-      </li>
-
-
-
-      {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}"><button class="btn btn-none">
+              <h3>About</h3>
+            </button></a>
+        </li>
 
 
-      <li class="nav-item"> <a href="{% url 'perfil' user.id %}"><button class="btn btn-none">
-            <h3><strong style="font-style: oblique;">{{user.username}}</strong></h3>
+
+        {% if user.is_authenticated %}
+
+
+        <li class="nav-item"> <a href="{% url 'perfil' user.id %}"><button class="btn btn-none">
+              <h3><strong style="font-style: oblique;">{{user.username}}</strong></h3>
+            </button>
+          </a></li>
+
+
+        <form action="{% url 'logout' %}" method="post">
+          {%csrf_token%}
+          <!-- {{form}} -->
+          <button type="sumit" class="btn btn-warning">
+            <h3>Cerrar Sesion</h3>
           </button>
-        </a></li>
+        </form>
+
+        {% else %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'registro' %}"><button class="btn btn-none">
+              <h3>Registro</h3>
+            </button></a>
+        </li>
+
+        <li> <a class="nav-link" href="{% url 'login' %}"><button class="btn btn-none">
+              <h3>Iniciar Sesion</h3>
+            </button>
+          </a>
+        </li>
+
+        {% endif %}
+
+      </ul>
 
 
-      <form action="{% url 'logout' %}" method="post">
-        {%csrf_token%}
-        <!-- {{form}} -->
-        <button type="sumit" class="btn btn-warning">
-          <h3>Cerrar Sesion</h3>
-        </button>
-      </form>
+    </nav>
+    <div
+      style='background:linear-gradient(15deg,rgba(2,0,36,1)0%,rgba(191,203,190,1)17%,rgba(168,218,228,0.9444152661064426)100%);min-height: 81vh;'>
+      {% block contenido %}
 
-      {% else %}
-
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'registro' %}"><button class="btn btn-none">
-            <h3>Registro</h3>
-          </button></a>
-      </li>
-
-      <li> <a class="nav-link" href="{% url 'login' %}"><button class="btn btn-none">
-            <h3>Iniciar Sesion</h3>
-          </button>
-        </a>
-      </li>
-
-      {% endif %}
-
-    </ul>
-
-
-  </nav>
-  <div
-    style=background:linear-gradient(15deg,rgba(2,0,36,1)0%,rgba(191,203,190,1)17%,rgba(168,218,228,0.9444152661064426)100%);>
-    {% block contenido %}
-
-    {% endblock contenido %}
-  </div>
-
-  <footer style="background-color: rgb(149, 128, 168); height: 120px; color: white;  ">
-    <div class="container">
-
-      <center>
-        <!--esta porcion de codigo es para el copyright y los iconos del footer y las redes-->
-        <br>
-        <h3>&copy 2024 Blog</h3>
-        <br>
-        <div class="social-icons">
-          <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.x.com" target="_blank"><i class="fab fa-x"></i></a>
-          <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-        <br </center>
-        <!--/esta porcion de codigo es para el copyright y los iconos del footer y las redes-->
+      {% endblock contenido %}
     </div>
-  </footer>
+
+    <footer style="background-color: rgb(149, 128, 168); height: 120px; color: white;  ">
+      <div class="container">
+
+        <center>
+          <!--esta porcion de codigo es para el copyright y los iconos del footer y las redes-->
+          <br>
+          <h3>&copy 2024 Blog</h3>
+          <br>
+          <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.x.com" target="_blank"><i class="fab fa-x"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          </center>
+          <!--/esta porcion de codigo es para el copyright y los iconos del footer y las redes-->
+      </div>
+    </footer>
+
 </body>
 
 </html>
