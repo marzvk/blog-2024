@@ -1,4 +1,5 @@
 # Info.Bit (Portal de Noticas sobre videojuegos) 
+## Pagina Online -- [click aqui](https://infocomision5grupo6.pythonanywhere.com/)
 ## Informatorio-Etapa 2(2024); Grupo 6, Comisión 5
 
 ## Integrantes 
