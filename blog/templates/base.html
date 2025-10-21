@@ -29,88 +29,105 @@
 </head>
 
 <body>
-  
-    <nav style="background:radial-gradient(circle,rgba(238,174,202,1)79%,rgba(148,187,233,1)100%);height:65px;">
-      <ul class="nav nav-fill">
 
-        <li class="nav-item"><a href="{% url 'index' %}"><img src="{% static 'img/logo3.png' %}" alt=""></a>
-        </li>
+  <nav class="navbar navbar-expand-lg"
+    style="background:radial-gradient(circle,rgba(238,174,202,1)79%,rgba(148,187,233,1)100%); height:65px;">
+    <div class="container-fluid">
 
-        <li class="nav-item">
-          <a class="nav-link active" href="{% url 'noticias' %}"><button class="btn btn-none">
-              <h3>Noticias</h3>
-            </button></a>
-        </li>
+      <!-- Logo -->
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img src="{% static 'img/logo3.png' %}" alt="">
+      </a>
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'about' %}"><button class="btn btn-none">
-              <h3>About</h3>
-            </button></a>
-        </li>
+      <!-- Botón hamburguesa -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+      <!-- Menú que se colapsa -->
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="nav nav-fill">
 
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'noticias' %}">
+              <button class="btn btn-none">
+                <h3>Noticias</h3>
+              </button>
+            </a>
+          </li>
 
-        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">
+              <button class="btn btn-none">
+                <h3>About</h3>
+              </button>
+            </a>
+          </li>
 
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{% url 'perfil' user.id %}">
+              <button class="btn btn-none">
+                <h3><strong style="font-style: oblique;">{{ user.username }}</strong></h3>
+              </button>
+            </a>
+          </li>
 
-        <li class="nav-item"> <a href="{% url 'perfil' user.id %}"><button class="btn btn-none">
-              <h3><strong style="font-style: oblique;">{{user.username}}</strong></h3>
+          <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning">
+              <h3>Cerrar Sesión</h3>
             </button>
-          </a></li>
+          </form>
 
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'registro' %}">
+              <button class="btn btn-none">
+                <h3>Registro</h3>
+              </button>
+            </a>
+          </li>
 
-        <form action="{% url 'logout' %}" method="post">
-          {%csrf_token%}
-          <!-- {{form}} -->
-          <button type="sumit" class="btn btn-warning">
-            <h3>Cerrar Sesion</h3>
-          </button>
-        </form>
-
-        {% else %}
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'registro' %}"><button class="btn btn-none">
-              <h3>Registro</h3>
-            </button></a>
-        </li>
-
-        <li> <a class="nav-link" href="{% url 'login' %}"><button class="btn btn-none">
-              <h3>Iniciar Sesion</h3>
-            </button>
-          </a>
-        </li>
-
-        {% endif %}
-
-      </ul>
-
-
-    </nav>
-    <div
-      style='background:linear-gradient(15deg,rgba(2,0,36,1)0%,rgba(191,203,190,1)17%,rgba(168,218,228,0.9444152661064426)100%);min-height: 81vh;'>
-      {% block contenido %}
-
-      {% endblock contenido %}
-    </div>
-
-    <footer style="background-color: rgb(149, 128, 168); height: 120px; color: white;  ">
-      <div class="container">
-
-        <center>
-          <!--esta porcion de codigo es para el copyright y los iconos del footer y las redes-->
-          <br>
-          <h3>&copy 2024 Blog</h3>
-          <br>
-          <div class="social-icons">
-            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.x.com" target="_blank"><i class="fab fa-x"></i></a>
-            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-          </div>
-          </center>
-          <!--/esta porcion de codigo es para el copyright y los iconos del footer y las redes-->
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">
+              <button class="btn btn-none">
+                <h3>Iniciar Sesión</h3>
+              </button>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
       </div>
-    </footer>
+
+    </div>
+  </nav>
+
+  <div
+    style='background:linear-gradient(15deg,rgba(2,0,36,1)0%,rgba(191,203,190,1)17%,rgba(168,218,228,0.9444152661064426)100%);min-height: 81vh;'>
+    {% block contenido %}
+
+    {% endblock contenido %}
+  </div>
+
+  <footer style="background-color: rgb(149, 128, 168); height: 120px; color: white;  ">
+    <div class="container">
+
+      <center>
+        <!--esta porcion de codigo es para el copyright y los iconos del footer y las redes-->
+        <br>
+        <h3>&copy 2024 Blog</h3>
+        <br>
+        <div class="social-icons">
+          <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.x.com" target="_blank"><i class="fab fa-x"></i></a>
+          <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+      </center>
+      <!--/esta porcion de codigo es para el copyright y los iconos del footer y las redes-->
+    </div>
+  </footer>
 
 </body>
 
