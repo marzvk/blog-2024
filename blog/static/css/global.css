@@ -68,3 +68,7 @@ body{
   color: #2c003e;
   transform: scale(1.05);
 }
+
+.nav .btn {
+  min-width: 180px;
+}

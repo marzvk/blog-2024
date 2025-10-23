@@ -2,9 +2,9 @@
 
 {% block contenido %}
 
-<div style=" padding-top: 150px; padding-bottom: 190px; padding-left: 150px;">
+<div class="container py-5 text-center">
     <h1><strong><u>Perfil del Usuario:</u></strong></h1>
-    
+
     {% if usuarios.icono %}
     <img src="{{user.icono.url }}" alt="sin imagen usuario" width="200px">
     {% endif %}
@@ -12,7 +12,7 @@
     <h1>El usuario con nombre: <strong>{{usuarios.username}}</strong>, tiene el id asignado:
         <strong>{{usuarios.id}}</strong>
     </h1>
-    
+    <a class="btn btn-success" href="{% url 'noticias' %}">Volver</a>
 </div>
 
 {% endblock %}

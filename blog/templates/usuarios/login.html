@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block contenido %}
-<center>
+<div class="container py-5 text-center">
     <h1 class="h1" style="padding-top: 190px;"> Inicio de Sesion</h1>
-    <div class="container">
+
     <form action="" method="post" style="padding-bottom: 170px;">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
 </div>
-</center>
+
 {% endblock %}

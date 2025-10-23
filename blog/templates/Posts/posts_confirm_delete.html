@@ -2,14 +2,17 @@
 
 
 {% block contenido%}
-<center>
-    <div style="padding-top: 150px; padding-bottom: 190px;">
-        <h2><strong>Desea eliminar: >>> <u>{{object}}</u> ???</strong></h2>
-        <form action="" method="post">
-            {% csrf_token %}
-            {{form}}
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-        </form>
-    </div>
-</center>
+
+<div class="container py-5 text-center">
+    <h2>
+        <strong>Desea eliminar: >>> <u>{{object}}</u> ???</strong>
+    </h2>    
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+    <a class="btn btn-success" href="{% url 'noticias' %}">Volver</a>
+</div>
+
 {% endblock contenido%}

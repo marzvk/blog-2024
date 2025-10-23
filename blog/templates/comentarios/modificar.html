@@ -1,5 +1,11 @@
-<form action="" method="post">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit">
-</form>
+{% extends 'base.html' %}
+{% block contenido%}
+<div class="container py-5 text-center">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" >
+    </form>
+    <a class="btn btn-success" href="{% url 'noticias' %}">Volver</a>
+</div>
+{% endblock contenido%}

@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {% block contenido %}
-<center>
 
-    <form method="post" enctype="multipart/form-data" style="padding-top: 120px; padding-bottom: 150px;">
-        <h1 class="h1"> Registro de Usuarios</h1>
-        {% csrf_token %}
-        <div class="container">
-            <table>{{ form.as_p }}</table>
-        </div>
+<div class="container py-5 text-center"></div>
+<form method="post" enctype="multipart/form-data">
+    <h1 class="h1"> Registro de Usuarios</h1>
+    {% csrf_token %}
+    <div class="container">
+        <table>{{ form.as_p }}</table>
+    </div>
+</form>
+<button type="submit" class="btn btn-primary"> Enviar</button>
+<a class="btn btn-success" href="{% url 'noticias' %}">Volver</a>
+</div>
 
-        <button type="submit" class="btn btn-primary"> Enviar</button>
-    </form>
-
-</center>
 
 {% endblock %}

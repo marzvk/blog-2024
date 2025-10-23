@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block contenido%}
+<div class="container py-5 text-center">
+    <h3>Seguro desea eliminar el comentario ???</h3>
 
-<h3>Seguro desea eliminar el comentario  ???</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+    <a class="btn btn-success" href="{% url 'noticias' %}">Volver</a>
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit" class="btn btn-danger">Eliminar</button>
-</form>
+</div>
 
 {% endblock contenido%}

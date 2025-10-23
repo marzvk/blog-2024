@@ -1,77 +1,80 @@
 {% extends "base.html" %}
 
 {% block contenido %}
+<div class="container py-4">
+    <h1 class="display-5 text-center mb-4">{{ noticia.titulo }}</h1>
 
-<h1 class="display-1">{{ noticia.titulo }}</h1>
-<div class="row">
-    <div class="col-md-7">
-        {% if noticia.imagen %}
-        <img src="{{ noticia.imagen.url }}" class="rounded float-end" width="60%">
-        {% else %}
-        <h3 style="margin-left: 250px; margin-top: 100px;">Sin imagen. Imaginemos algo positivo....</h3>
-        {% endif %}
-    </div>
-    <div class="col-md-4">
-
-        {% if user.id == noticia.autor_id %}
-
-        <a href="{% url 'modificar_post' noticia.pk %}" class="btn btn-danger">Modificar contenido</a>
-
-        {%endif%}
-
-        <hr>
-        <h2><strong><u>Noticia:</u></strong></h2>
-        <p>
-            {{ noticia.contenido }}
-        </p>
-        <hr>
-        <h5>
-            <strong>Fecha de Publicacion:</strong>
-        </h5>
-        <p> {{ noticia.fecha_publicacion }} </p>
-        <hr>
-        <h5><strong>Categoria:</strong></h5>
-        <p>{{noticia.categoria}}</p>
-        <hr>
-        <h5><strong>Autor:</strong></h5>
-        <p>{{noticia.autor}}</p>
-
-        <hr>
-
-        <h2>Escribe un comentario</h2>
-        <div>
-            {% if user.is_authenticated %}
-            <form action="{% url 'comentar' %}" method="post">
-                {% csrf_token %}
-                <textarea name="comentario">
-                </textarea>
-                <input type="text" name="id_noticia" value="{{ noticia.pk }}" hidden="">
-                <button type="submit" class="btn btn-secondary">Comentar </button>
-            </form>
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-7 text-center">
+            {% if noticia.imagen %}
+            <img src="{{ noticia.imagen.url }}" class="img-fluid rounded shadow" alt="Imagen de {{ noticia.titulo }}">
             {% else %}
-            <h5>Debes loguearte para comentar: <a href="{% url 'login' %}" class="btn btn-secondary">Login</a></h5>
-            {%endif%}
+            <h3 class="text-muted my-5">Sin imagen. Imaginemos algo positivo...</h3>
+            {% endif %}
         </div>
-        <hr>
-        <div>
-            <h2>Comentarios</h2>
-            {% for comentario in comentarios %}
-            <div class="card bg-secondary text-white mb-3" style="max-width: 18rem;">
-                <div class="card-header">{{comentario.fecha_publicacion}}</div>
-                <div class="card-body">
-                    <h5 class="card-title"> {{comentario.autor}}</h5>
-                    <p class="card-text">{{comentario.contenido}}</p>
-                </div>
-                {% if user.id == comentario.autor_id  %}
-                <a class="btn btn-danger" href="{% url 'borrar_comentario' comentario.pk %}">Eliminar</a>
-                <a class="btn btn-warning" href="{% url 'modificar_comentario' comentario.pk %}">Modificar</a>
+
+        <div class="col-12 col-md-5">
+            {% if user.id == noticia.autor_id %}
+            <a href="{% url 'modificar_post' noticia.pk %}" class="btn btn-danger mb-3 w-100">Modificar contenido</a>
+            {% endif %}
+
+            <hr>
+            <h4><strong><u>Noticia:</u></strong></h4>
+            <p>{{ noticia.contenido }}</p>
+
+            <hr>
+            <h6><strong>Fecha de Publicación:</strong></h6>
+            <p>{{ noticia.fecha_publicacion }}</p>
+
+            <hr>
+            <h6><strong>Categoría:</strong></h6>
+            <p>{{ noticia.categoria }}</p>
+
+            <hr>
+            <h6><strong>Autor:</strong></h6>
+            <p>{{ noticia.autor }}</p>
+
+            <hr>
+            <h4 class="mt-4">Escribe un comentario</h4>
+            <div class="mb-4">
+                {% if user.is_authenticated %}
+                <form action="{% url 'comentar' %}" method="post">
+                    {% csrf_token %}
+                    <textarea name="comentario" class="form-control mb-2" rows="3"
+                        placeholder="Escribe tu comentario..."></textarea>
+                    <input type="hidden" name="id_noticia" value="{{ noticia.pk }}">
+                    <button type="submit" class="btn btn-secondary w-100">Comentar</button>
+                </form>
+                {% else %}
+                <h6 class="mt-2">
+                    Debes loguearte para comentar:
+                    <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-sm">Login</a>
+                </h6>
                 {% endif %}
             </div>
 
+            <hr>
+            <h4>Comentarios</h4>
+            {% for comentario in comentarios %}
+            <div class="card bg-secondary text-white mb-3">
+                <div class="card-header small text-end">{{ comentario.fecha_publicacion }}</div>
+                <div class="card-body">
+                    <h6 class="card-title mb-1">{{ comentario.autor }}</h6>
+                    <p class="card-text">{{ comentario.contenido }}</p>
+
+                    {% if user.id == comentario.autor_id %}
+                    <div class="d-flex gap-2 justify-content-end">
+                        <a class="btn btn-warning btn-sm"
+                            href="{% url 'modificar_comentario' comentario.pk %}">Modificar</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'borrar_comentario' comentario.pk %}">Eliminar</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-muted">No hay comentarios aún.</p>
             {% endfor %}
         </div>
     </div>
-
 </div>
-
 {% endblock %}

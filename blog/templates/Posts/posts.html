@@ -5,81 +5,71 @@
 <h1 class="display-1 text-center">Noticias</h1>
 
 <!-- Navegador y filtros  -->
-<ul class="nav nav-pills nav-fill">
+<ul class="nav nav-pills justify-content-center flex-wrap gap-2 mt-3 mb-4">
     {% if user.is_authenticated %}
     <li class="nav-item">
-        <a href="{% url 'nuevo_post' %}"><button class="btn btn-success">Nuevo
-                Post</button></a>
+        <a href="{% url 'nuevo_post' %}" class="btn btn-success">Nuevo Post</a>
     </li>
-
     {% endif %}
 
-    <li class="nav-item"><a href="?ordenar=fecha"><button class="btn btn-info">Ordenar por fecha</button></a></li>
-    <li class="nav-item"> <a href="?ordenar=alfabetico"><button class="btn btn-info">Ordenar
-                alfabeticamente</button></a></li>
+    <li class="nav-item">
+        <a href="?ordenar=fecha" class="btn btn-info">Ordenar por fecha</a>
+    </li>
+
+    <li class="nav-item">
+        <a href="?ordenar=alfabetico" class="btn btn-info">Ordenar alfabéticamente</a>
+    </li>
 
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-            aria-expanded="false"><button class="btn btn-success">Categorias</button></a>
+        <a class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false">Categorías</a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'noticias' %}"><button
-                        class="btn btn-outline-secondary">Todas</button></a>
+            <li>
+                <a class="dropdown-item" href="{% url 'noticias' %}">Todas</a>
             </li>
             {% for categoria in categorias %}
-            <li><a class="dropdown-item" href="?categoria={{categoria.nombre}}"><button
-                        class="btn btn-outline-secondary">{{categoria.nombre}}</button>
-                </a></li>
-
-
+            <li>
+                <a class="dropdown-item" href="?categoria={{categoria.nombre}}">{{categoria.nombre}}</a>
+            </li>
             {% endfor %}
         </ul>
     </li>
-    <hr>
-
 </ul>
-<!-- Inicio muestra de noticias -->
 
+<!-- Inicio muestra de noticias -->
 <div class="container">
-    <div class="row gx-5 gy-3">
+    <div class="row gx-4 gy-4">
         {% for noticia in page_obj %}
-        <div class="col-md-6">
-            <div class="card bg-dark text-white mb-2">
+        <div class="col-12 col-md-6">
+            <div class="card bg-dark text-white h-100">
 
                 {% if noticia.imagen %}
-
-                <img src="{{ noticia.imagen.url }}" alt="">
-
+                <img src="{{ noticia.imagen.url }}" class="img-fluid" alt="">
                 {% else %}
-
-                <h4>Sin imagen</h4>
-                <h4>Usa tu imaginacion</h4>
-                <br>
-                <br>
-
+                <div class="text-center py-5">
+                    <h4>Sin imagen</h4>
+                    <h4>Usa tu imaginación</h4>
+                </div>
                 {% endif %}
+
                 <div class="card-body">
                     <h2 class="card-title">{{ noticia.titulo }}</h2>
                     <p class="card-text">{{ noticia.contenido | truncatechars:40 }}</p>
-                    <a href="{% url 'detalle' noticia.id %}" class="btn btn-outline-info">ver más...</a>
-                    <!-- truncatechars, para mostrar solo la cantidad indicada de caracteres -->
-                    <p>{{ noticia.fecha_publicacion }}</p>
-                    <a href="?autor={{noticia.autor}}" class="btn btn-success"><small>autor:
+                    <a href="{% url 'detalle' noticia.id %}" class="btn btn-outline-info btn-sm">ver más...</a>
+                    <p class="mt-2">{{ noticia.fecha_publicacion }}</p>
+                    <a href="?autor={{noticia.autor}}" class="btn btn-success btn-sm"><small>autor:
                             {{noticia.autor}}</small></a>
 
                     {% if user.id == noticia.autor_id %}
-                    <a href="{% url 'eliminar_post' noticia.pk %}"><button type="submit"
-                            class="btn btn-danger">Eliminar</button></a>
-                    {%endif%}
-
+                    <a href="{% url 'eliminar_post' noticia.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
-
         {% endfor %}
 
         <!-- Paginado -->
-
-        <div class="pagination justify-content-center flex-wrap mt-3">
+        <div class="pagination justify-content-center flex-wrap mt-4">
             <span class="step-links d-flex flex-wrap justify-content-center gap-2">
                 {% if page_obj.has_previous %}
                 <a class="btn btn-dark btn-sm" href="?page=1">&laquo; Primera</a>
@@ -96,10 +86,7 @@
                 {% endif %}
             </span>
         </div>
-
-
     </div>
 </div>
-
 
 {% endblock %}
