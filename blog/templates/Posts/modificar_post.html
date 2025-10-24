@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
 
 {% block contenido %}
-<div class="container py-5 text-center">
-  <form action="" method="post" class="mx-auto" style="max-width: 400px;">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Enviar" class="btn btn-success mt-3">
-  </form>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <form action="" method="post" class="mx-auto" style="max-width: 400px;">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Enviar" class="btn btn-success mt-3 w-100">
+      </form>
+    </div>
+  </div>
 </div>
+
+<style>
+textarea {
+  width: 100% !important;
+  max-width: 100%;
+  resize: vertical; 
+}
+</style>
+
+
 {% endblock %}

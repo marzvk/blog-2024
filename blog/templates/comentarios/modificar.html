@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 {% block contenido%}
-<div class="container py-5 text-center">
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" >
-    </form>
-    <a class="btn btn-success" href="{% url 'noticias' %}">Volver</a>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <form method="post" class="border rounded p-4 shadow-sm bg-light">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-primary w-100 mt-3" value="Guardar">
+            </form>
+            <a class="btn btn-success w-100 mt-3" href="{% url 'noticias' %}">Volver</a>
+        </div>
+    </div>
 </div>
+<style>
+textarea {
+  width: 100% !important;
+  max-width: 100%;
+  resize: vertical; 
+}
+</style>
+
+
 {% endblock contenido%}

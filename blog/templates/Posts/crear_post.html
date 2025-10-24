@@ -2,11 +2,38 @@
 
 
 {%block contenido%}
-<div class="container py-5 text-center">
-    <form action="" method="post" enctype="multipart/form-data" style="padding: 160px;">
-        {%csrf_token%}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-dark">enviar</button>
-    </form>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <form action="" method="post" enctype="multipart/form-data" class="shadow-sm bg-light rounded">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-dark w-100 mt-3">Enviar</button>
+            </form>
+        </div>
+    </div>
 </div>
+
+
+<style>
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="file"],
+    form select,
+    form textarea {
+        width: 100% !important;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    form {
+        padding: 2rem;
+        /* mucho mejor que 160px */
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
 {%endblock contenido%}
